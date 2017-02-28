@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	void Start ()
     {
         m_life = 2;
-        m_resource = 1;
+        m_resource = 2;
 	}
 	
 	// Update is called once per frame

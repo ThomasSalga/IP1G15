@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
 
     #region member
 
+	Animator anim;
+
     public EnemyState m_state;
     public int m_atk;
     public float m_atk_speed;
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour {
         m_state = EnemyState.Move;
 
         m_atkRate = 1f / m_atk_speed;
+
     }
 	
 	void FixedUpdate ()
@@ -80,6 +83,7 @@ public class Enemy : MonoBehaviour {
         if (other.gameObject.tag == "Defence")
         {
             m_state = EnemyState.Attack;
+		
             m_target = other.gameObject;
         }
         else if (other.gameObject.tag == "Projectile")
@@ -117,6 +121,8 @@ public class Enemy : MonoBehaviour {
         {
             m_target.GetComponent<Tower>().m_life--;
             StartCoroutine(HitFeedback(m_target.GetComponent<SpriteRenderer>()));
+			anim.SetBool ("attacking", true);
+
         }
         else m_state = EnemyState.Move;
 
