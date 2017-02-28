@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour {
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_state = EnemyState.Move;
-
+		anim = GetComponent<Animator>();
+		anim.SetBool ("attacking", false);
         m_atkRate = 1f / m_atk_speed;
 
     }
