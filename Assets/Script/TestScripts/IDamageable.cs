@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IDamageable<T> {
+public interface IDamageable<T>
+{
 
     T MyDurability { get; set; }
 
