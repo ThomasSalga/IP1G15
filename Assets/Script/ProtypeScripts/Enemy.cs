@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		anim.SetBool ("attacking", false);
         m_atkRate = 1f / m_atk_speed;
-
     }
 	
 	void FixedUpdate ()
@@ -67,6 +66,7 @@ public class Enemy : MonoBehaviour {
     {
         if (m_target == null)
             m_state = EnemyState.Move;
+
         switch (m_state)
         {
             case EnemyState.Move:

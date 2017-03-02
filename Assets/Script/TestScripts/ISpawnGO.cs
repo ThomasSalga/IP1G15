@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface ISpawnGO {
-
+public interface ISpawnGO
+{
     GameObject MyPrefabToSpawn { get; set; }
 
-    void SpawnGO();
+    void SpawnGO(GameObject go);
 }
