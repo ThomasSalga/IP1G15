@@ -3,46 +3,35 @@ using System.Collections;
 
 public class Pause : MonoBehaviour 
 {
-	//[SerializeField] private
 	public GameObject pausePanel;
 	void Start()
 	{
 		pausePanel.SetActive(false);
 	}
+
 	void Update()
 	{
-		if (!pausePanel.activeInHierarchy) {
-			
-			if (Input.GetKeyDown (KeyCode.Escape)) {
-			
-		
-				if (!pausePanel.activeInHierarchy) {
-					//Debug.Log ("Game Paused");
-					StartCoroutine (PauseGame ());
-					//PauseGame ();
-
-				}
-
-			}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!pausePanel.activeInHierarchy)
+            {
+                if (!pausePanel.activeInHierarchy)
+                    StartCoroutine(PauseGame());
+            }
+            else StartCoroutine(ContinueGame());
+        }
 
 
-
-		}
-
-
-		if (pausePanel.activeInHierarchy) {
-
-			if (Input.GetKeyDown (KeyCode.Escape)) {
-
-		
-			
-				if (pausePanel.activeInHierarchy) {
-					//Debug.Log ("Game Resumed");
-					StartCoroutine (ContinueGame ());   
-
-				}
-			} 
-		}
+       // if (Input.GetKeyDown(KeyCode.Escape)) // you were calling twice in the same frame that's why was pausing and unpausing 
+       // {
+       //     if (pausePanel.activeInHierarchy)
+       //     {
+       //         if (pausePanel.activeInHierarchy) // you are controlling twice the same thing
+       //         {
+       //             StartCoroutine (ContinueGame ());  
+       //         }
+       //     }
+       // }
 	}
 
 	//private void PauseGame()
