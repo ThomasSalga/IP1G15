@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum DefenceState { ToPlace, Placed };
 
 public class Tower : MonoBehaviour {
 
@@ -31,9 +30,7 @@ public class Tower : MonoBehaviour {
             yield return new WaitForSeconds(.01f);
         }
         rendererObj.color = Color.white;
-    }
-
-    
+    }    
 
     void Start()
     {

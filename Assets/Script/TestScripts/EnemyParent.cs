@@ -3,7 +3,7 @@ using System.Collections;
 
 public enum EnemyState { Move, Attack };
 
-public abstract class EnemyParent : MonoBehaviour, IDamageable<int>, IMovable, IAttack<int>, IRecurringAction {
+public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IAttack<int>, IRecurringAction {
 
     #region classMembers
 
@@ -100,6 +100,8 @@ public abstract class EnemyParent : MonoBehaviour, IDamageable<int>, IMovable, I
         set
         {
             m_target = value;
+            if (value = null)
+                m_state = EnemyState.Move;
         }
     }
 
@@ -144,8 +146,11 @@ public abstract class EnemyParent : MonoBehaviour, IDamageable<int>, IMovable, I
     }
 
     // AI LOGIC IS IN HERE
-    protected void CheckState()
+    protected virtual void CheckState()
     {
+        if (m_target == null)
+            m_state = EnemyState.Move;
+
         switch (m_state)
         {
             case EnemyState.Move:
@@ -158,13 +163,13 @@ public abstract class EnemyParent : MonoBehaviour, IDamageable<int>, IMovable, I
         }
     }
 
-    public virtual void Death()
+    public override void Death()
     {
         //do funny things
         Destroy(gameObject);
     }
 
-    public virtual void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         // Call effects here
         MyDurability -= amount;

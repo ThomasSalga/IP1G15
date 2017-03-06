@@ -2,29 +2,35 @@
 using System.Collections;
 using System;
 
-public abstract class TowerParent : MonoBehaviour, IDamageable<int> {
+public enum DefenceState { ToPlace, Placed };
+
+public abstract class TowerParent : LivingObject, IDamageable<int> {
+
+    #region members
+    [SerializeField]
+    protected int m_hp;
+
+    private DefenceState m_state;
+
+    #endregion
 
     #region Interfaces' Property
-    
+
     public int MyDurability
     {
         get
         {
-            throw new NotImplementedException();
+            return m_hp;
         }
 
         set
         {
-            throw new NotImplementedException();
+            m_hp = value;
         }
     }
 
-    #endregion
 
-    public virtual void TakeDamage(int amount)
-    {
-        throw new NotImplementedException();
-    }
+    #endregion
 
     // Use this for initialization
     void Start () {
@@ -35,4 +41,44 @@ public abstract class TowerParent : MonoBehaviour, IDamageable<int> {
 	void Update () {
 	
 	}
+
+    protected void CheckState()
+    {
+        switch (m_state)
+        {
+            case DefenceState.ToPlace:
+                transform.position = Drag();
+                //DefenceStateToPlace();
+                break;
+
+            case DefenceState.Placed:
+               // DefenceStatePlaced();
+                break;
+        }
+    }
+
+    public virtual void TakeDamage(int amount)
+    {
+        MyDurability -= amount;
+
+        if (MyDurability <= 0)
+            Death();
+    }
+
+    public override void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    protected virtual Vector3 Drag()
+    {
+        if (Input.GetButtonUp("Fire1"))// && snappable)
+        {
+            if (Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject.tag == "Snap")
+            {
+                return Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.transform.position;
+            }
+        }
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
 }
