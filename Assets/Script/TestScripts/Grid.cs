@@ -72,6 +72,30 @@ public class Grid : MonoBehaviour {
                     newTile.transform.position = new Vector3(m_LeftmostPos - (tileWidth * x), m_LowestPos - (tileHeight * y), 0);
             }
         }
+
+        LockHalfGrid();
+    }
+
+    public void LockHalfGrid()
+    {
+        for (int y = 0; y < m_rows; y++)
+        {
+            for (int x = m_columns / 2; x >= 0; x--)
+            {
+                m_grid[y, x].GetComponent<Cell>().IsBlocked = true;
+            }
+        }
+    }
+
+    public void FullGrid()
+    {
+        for (int y = 0; y < m_rows; y++)
+        {
+            for (int x = m_columns / 2; x >= 0; x--)
+            {
+                m_grid[y, x].GetComponent<Cell>().IsBlocked = false;
+            }
+        }
     }
 
     public bool IsPlaceable(int x, int y)
