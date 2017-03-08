@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
 
@@ -52,14 +52,17 @@ public class Grid : MonoBehaviour {
         float tileWidth = m_tile.GetComponent<SpriteRenderer>().bounds.size.x;
         float tileHeight = m_tile.GetComponent<SpriteRenderer>().bounds.size.y;
         
-        for (int y = 0; y < m_columns; y++)
+        for (int y = 0; y < m_rows; y++)
         {
-            for (int x = 0; x < m_rows; x++)
+            for (int x = 0; x < m_columns; x++)
             {
                 GameObject newTile = Instantiate(m_tile);
-                newTile.name = "Tile" + y.ToString() + x.ToString();
+                newTile.name = "Tile" + x.ToString() + y.ToString();
 
-                m_grid[x, y] = newTile;
+                newTile.GetComponent<Cell>().MyColumn = x;
+                newTile.GetComponent<Cell>().MyRow = y;
+
+                m_grid[y, x] = newTile;
 
                 if (x > 0 && y == 0)
                     newTile.transform.position = new Vector3((m_LeftmostPos + x * m_gapX) + (tileWidth * x), m_LowestPos - (tileHeight * y), 0);
@@ -71,23 +74,33 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    void UpdateGrid()
+    public bool BlockCells(List<Vector2> vectorList)
     {
-        float tileWidth = m_tile.GetComponent<SpriteRenderer>().bounds.size.x;
-        float tileHeight = m_tile.GetComponent<SpriteRenderer>().bounds.size.y;
-
-
-        for (int y = 0; y < 4; y++)
+        foreach( Vector2 vector in vectorList)
         {
-            for (int x = 0; x < 7; x++)
+            if (vector.x > m_rows && vector.y < 0)
             {
-                if (x > 0 && y == 0)
-                    m_grid[x, y].transform.position = new Vector3((m_LeftmostPos + x * m_gapX) + (tileWidth * x), m_LowestPos - (tileHeight * y), 0);
-                else if (x >= 0 && y > 0)
-                    m_grid[x, y].transform.position = new Vector3((m_LeftmostPos + x * m_gapX) + (tileWidth * x), (m_LowestPos + y * m_gapY) + (tileHeight * y), 0);
-                else //if x and y == 0
-                    m_grid[x, y].transform.position = new Vector3(m_LeftmostPos - (tileWidth * x), m_LowestPos - (tileHeight * y), 0);
+                return false;
+            }
+            else if (m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().IsBlocked)
+            {
+                return false;
             }
         }
+
+        foreach (Vector2 vector in vectorList)
+        {
+            m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().LockThis();
+        }
+        return true;
+    }
+
+    public bool FreeCells(List<Vector2> vectorList)
+    {
+        foreach (Vector2 vector in vectorList)
+        {
+            m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().UnlockThis();
+        }
+        return true;
     }
 }

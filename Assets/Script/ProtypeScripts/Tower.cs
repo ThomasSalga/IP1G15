@@ -91,16 +91,15 @@ public class Tower : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.tag == "Snap")
         {
             StartCoroutine(SelectedFeedback(other.gameObject.GetComponent<SpriteRenderer>()));
-            if (!other.GetComponent<Cell>().m_blocked)
+            if (!other.GetComponent<Cell>().IsBlocked)
             {
                 m_snapHere = other.transform.position;
                 m_snapHere.z = 0;
 
-                other.GetComponent<Cell>().m_blocked = true;
+                other.GetComponent<Cell>().IsBlocked = true;
                 snappable = true;
             }
         }

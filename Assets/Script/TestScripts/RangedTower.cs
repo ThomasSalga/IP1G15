@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
 
@@ -60,23 +61,41 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
         SpawnGO(MyPrefabToSpawn);
     }
 
+    // Use this for initialization
+    protected override void Start()
+    {
+        base.Start();
+        MyActionTimeGap = MyActionTimeGap;
+        m_buildingSpace.Add(Vector2.left);
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        
+
+    }
+
+    protected override void CheckState()
+    {
+        switch (m_state)
+        {
+            case DefenceState.ToPlace:
+                transform.position = Drag();
+                break;
+
+            case DefenceState.Placed:
+                if (Time.time > m_atkSpeed + m_lastShot)
+                {
+                    StartCoroutine(RecurAction());
+                    m_lastShot = Time.time;
+                }
+                break;
+        }
+    }
+
     public void SpawnGO(GameObject go)
     {
         Instantiate(go, transform.position, Quaternion.identity);
-    }
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (Time.time > MyActionTimeGap + m_lastShot)
-        {
-            SpawnGO(MyPrefabToSpawn);
-            m_lastShot = Time.time;
-        }
-
     }
 }

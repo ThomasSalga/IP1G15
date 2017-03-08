@@ -4,7 +4,37 @@ using System.Collections;
 public class Cell : MonoBehaviour {
 
     #region member
-    public bool m_blocked;
+    [SerializeField]
+    private bool m_blocked;
+    private int m_row;
+    private int m_column;
+    #endregion
+
+    #region properties
+    public bool IsBlocked
+    {
+        get { return m_blocked; }
+        set
+        {
+            m_blocked = value;
+            if(value)
+            {
+
+            }
+        }
+    }
+
+    public int MyRow
+    {
+        get { return m_row; }
+        set { m_row = value; }
+    }
+
+    public int MyColumn
+    {
+        get { return m_column; }
+        set { m_column = value; }
+    }
     #endregion
 
     // Use this for initialization
@@ -19,24 +49,13 @@ public class Cell : MonoBehaviour {
 	    
 	}
 
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.tag == "Defence")
-    //        if (other.GetComponent<TowerParent>().m_state == DefenceState.Placed)
-    //        {
-    //            m_blocked = true;
-    //        }
-    //}
-
-    void BlockThis()
+    public void LockThis()
     {
         m_blocked = true;
     }
 
-
-    void OnTriggerExit2D(Collider2D other)
+    public void UnlockThis()
     {
         m_blocked = false;
     }
-
 }
