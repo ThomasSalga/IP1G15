@@ -19,7 +19,7 @@ public class Grid : MonoBehaviour {
     [SerializeField]
     float m_gapY;
 
-    private GameObject[,] m_grid;
+    public static GameObject[,] m_grid;
 
 
     public float MyLeftmostPos
@@ -74,29 +74,25 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    public bool IsPlaceable(List<Vector2> vectorList)
+    public bool IsPlaceable(int x, int y)
     {
-        foreach (Vector2 vector in vectorList)
+        if (x >= 0 && y < m_rows)
         {
-            if (vector.x > m_rows && vector.y < 0)
+            if (m_grid[y, x].gameObject.GetComponent<Cell>().IsBlocked)
             {
                 return false;
             }
-            else if (m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().IsBlocked)
-            {
-                return false;
-            }
+            else return true; 
         }
-        return true;
+        return false;
     }
 
-    public bool BlockCells(List<Vector2> vectorList)
+    public void BlockCells(List<Vector2> vectorList)
     {
         foreach (Vector2 vector in vectorList)
         {
             m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().LockThis();
         }
-        return true;
     }
 
     public bool FreeCells(List<Vector2> vectorList)

@@ -93,16 +93,19 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
 
             if (m_hit.gameObject.tag == "Snap")
             {
-                m_originX = m_hit.GetComponent<Cell>().MyColumn;
-                m_originY = m_hit.GetComponent<Cell>().MyRow;
-                if (SecurePos(m_originX, m_originY))
+                if (m_originX != m_hit.GetComponent<Cell>().MyColumn || m_originY != m_hit.GetComponent<Cell>().MyRow)
+                {
+                    m_originY = m_hit.GetComponent<Cell>().MyRow;
+                    m_originX = m_hit.GetComponent<Cell>().MyColumn;
+                }
+                if (SecurePos(m_originX, m_originY, m_buildingSpace))
                 {
                     PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        BlockSpace(m_originX, m_originY);
-                        //SecurePos(m_originX, m_originY);
+                        BlockSpace(m_originX, m_originY, m_buildingSpace);
                         m_state = DefenceState.Placed;
+                        PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
                         m_pos = m_hit.transform.position;
                         m_pos.z = 0;
                         m_pos.x += m_adjustPosX;
@@ -110,64 +113,52 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
                         gameObject.GetComponent<Collider2D>().enabled = true;
                         return m_pos;
                     }
-                    m_pos = m_hit.transform.position;
-                    m_pos.z = 0;
-                    m_pos.x += m_adjustPosX;
-                    m_pos.y += m_adjustPosY;
                 }
+                else PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
+                m_pos = m_hit.transform.position;
+                m_pos.z = 0;
+                m_pos.x += m_adjustPosX;
+                m_pos.y += m_adjustPosY;
             }
-            else PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
         }
         return m_pos;
     }
 
-    protected virtual bool SecurePos(int x, int y)
+    protected virtual bool SecurePos(int x, int y, List<Vector2> checkPlaces)
     {
-        Debug.Log("xy " + x + y);
-        List<Vector2> temp = m_buildingSpace;
-
-        for (int i = m_buildingSpace.Count - 1; i >= 0; i--)
+        foreach (Vector2 place in checkPlaces)
         {
-            Vector2 t = temp[i];
-            t.x += x; 
-            t.y += y;
-            temp[i] = t;
+            int newX = x + (int)place.x;
+            int newY = y + (int)place.y;
+            if(!FindObjectOfType<Grid>().IsPlaceable(newX,newY))
+            {
+                return false;
+            }
         }
-        if (GameObject.FindGameObjectWithTag("Field").GetComponent<Grid>().IsPlaceable(temp))
-        {
-            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
-            return true;
-        }
-        return false;
-
+        return true;
     }
 
-    protected virtual bool BlockSpace(int x, int y)
+    protected virtual void BlockSpace(int x, int y, List<Vector2> checkPlaces)
     {
-        List<Vector2> temp = m_buildingSpace;
+        List<Vector2> temp = new List<Vector2>();
 
-        for (int i = m_buildingSpace.Count - 1; i >= 0; i--)
+        foreach (Vector2 place in checkPlaces)
         {
-            Vector2 t = temp[i];
-            t.x += x;
-            t.y += y;
-            temp[i] = t;
+            Vector2 t = new Vector2();
+            int newX = x + (int)place.x;
+            int newY = y + (int)place.y;
+            t.x = newX;
+            t.y = newY;
+            temp.Add(t);
         }
-        if (GameObject.FindGameObjectWithTag("Field").GetComponent<Grid>().BlockCells(temp))
-        {
-            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
-            return true;
-        }
-        return false;
-
+        FindObjectOfType<Grid>().BlockCells(temp);
+        m_buildingSpace = temp;
     }
 
     protected virtual void FreePos()
     {
-        if (GameObject.FindGameObjectWithTag("Field").GetComponent<Grid>().FreeCells(m_buildingSpace))
-        {
+        if (FindObjectOfType<Grid>().FreeCells(m_buildingSpace))
             Destroy(gameObject);
-        }
     }
 
     void PlacementFeedback(SpriteRenderer rendererObj, Color apply)
