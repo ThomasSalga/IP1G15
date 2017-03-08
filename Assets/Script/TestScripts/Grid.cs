@@ -74,9 +74,9 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    public bool BlockCells(List<Vector2> vectorList)
+    public bool IsPlaceable(List<Vector2> vectorList)
     {
-        foreach( Vector2 vector in vectorList)
+        foreach (Vector2 vector in vectorList)
         {
             if (vector.x > m_rows && vector.y < 0)
             {
@@ -87,7 +87,11 @@ public class Grid : MonoBehaviour {
                 return false;
             }
         }
+        return true;
+    }
 
+    public bool BlockCells(List<Vector2> vectorList)
+    {
         foreach (Vector2 vector in vectorList)
         {
             m_grid[(int)vector.y, (int)vector.x].gameObject.GetComponent<Cell>().LockThis();

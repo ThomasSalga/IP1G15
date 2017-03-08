@@ -93,32 +93,37 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
 
             if (m_hit.gameObject.tag == "Snap")
             {
-                PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
-                if (Input.GetButtonDown("Fire1") && !m_hit.GetComponent<Cell>().IsBlocked)
+                m_originX = m_hit.GetComponent<Cell>().MyColumn;
+                m_originY = m_hit.GetComponent<Cell>().MyRow;
+                if (SecurePos(m_originX, m_originY))
                 {
-                    m_originX = m_hit.GetComponent<Cell>().MyColumn;
-                    m_originY = m_hit.GetComponent<Cell>().MyRow;
-                    SecurePos(m_originX, m_originY);
-                    m_state = DefenceState.Placed;
+                    PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        BlockSpace(m_originX, m_originY);
+                        //SecurePos(m_originX, m_originY);
+                        m_state = DefenceState.Placed;
+                        m_pos = m_hit.transform.position;
+                        m_pos.z = 0;
+                        m_pos.x += m_adjustPosX;
+                        m_pos.y += m_adjustPosY;
+                        gameObject.GetComponent<Collider2D>().enabled = true;
+                        return m_pos;
+                    }
                     m_pos = m_hit.transform.position;
                     m_pos.z = 0;
                     m_pos.x += m_adjustPosX;
                     m_pos.y += m_adjustPosY;
-                    gameObject.GetComponent<Collider2D>().enabled = true;
-                    return m_pos;
                 }
-                m_pos = m_hit.transform.position;
-                m_pos.z = 0;
-                m_pos.x += m_adjustPosX;
-                m_pos.y += m_adjustPosY;
             }
             else PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
         }
         return m_pos;
     }
 
-    protected virtual void SecurePos(int x, int y)
+    protected virtual bool SecurePos(int x, int y)
     {
+        Debug.Log("xy " + x + y);
         List<Vector2> temp = m_buildingSpace;
 
         for (int i = m_buildingSpace.Count - 1; i >= 0; i--)
@@ -128,9 +133,33 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
             t.y += y;
             temp[i] = t;
         }
+        if (GameObject.FindGameObjectWithTag("Field").GetComponent<Grid>().IsPlaceable(temp))
+        {
+            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
+            return true;
+        }
+        return false;
+
+    }
+
+    protected virtual bool BlockSpace(int x, int y)
+    {
+        List<Vector2> temp = m_buildingSpace;
+
+        for (int i = m_buildingSpace.Count - 1; i >= 0; i--)
+        {
+            Vector2 t = temp[i];
+            t.x += x;
+            t.y += y;
+            temp[i] = t;
+        }
         if (GameObject.FindGameObjectWithTag("Field").GetComponent<Grid>().BlockCells(temp))
-            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
-        else Destroy(gameObject);
+        {
+            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
+            return true;
+        }
+        return false;
+
     }
 
     protected virtual void FreePos()
