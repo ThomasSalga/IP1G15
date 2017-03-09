@@ -42,6 +42,19 @@ public class Player : MonoBehaviour, IFixable<int> {
         }
     }
 
+    public int MyResource
+    {
+        get
+        {
+            return m_resource;
+        }
+
+        set
+        {
+            m_resource = value;
+        }
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -49,17 +62,17 @@ public class Player : MonoBehaviour, IFixable<int> {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        TakeDamage(other.GetComponent<EnemyParent>().MyDamage);
         Destroy(other.gameObject);
-        m_life--;
     }
 
     public void Fix(int amount)
     {
-        throw new NotImplementedException();
+        MyDurability += amount;
     }
 
     public void TakeDamage(int amount)
     {
-        throw new NotImplementedException();
+        MyDurability -= amount;
     }
 }

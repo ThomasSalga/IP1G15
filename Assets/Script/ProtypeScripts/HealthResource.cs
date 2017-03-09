@@ -17,7 +17,7 @@ public class HealthResource : MonoBehaviour {
     {
         m_player = GameObject.FindGameObjectWithTag("Player");
 
-        gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().m_life;
+        gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().MyDurability;
 
     }
 }

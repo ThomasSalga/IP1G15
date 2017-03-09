@@ -18,7 +18,7 @@ public class MoneyResource : MonoBehaviour {
 		{
 			m_player = GameObject.FindGameObjectWithTag("Player");
 
-			gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().m_resource;
+			gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().MyResource;
 
 		}
 	}

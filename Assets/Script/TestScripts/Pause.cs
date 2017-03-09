@@ -11,7 +11,6 @@ public class Pause : MonoBehaviour
 
 	void Start()
 	{
-
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
 	}
