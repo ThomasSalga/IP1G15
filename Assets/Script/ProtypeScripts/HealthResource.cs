@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class LifeResource : MonoBehaviour {
+public class HealthResource : MonoBehaviour {
 
 
     GameObject m_player;
@@ -17,8 +17,7 @@ public class LifeResource : MonoBehaviour {
     {
         m_player = GameObject.FindGameObjectWithTag("Player");
 
-        gameObject.GetComponent<Text>().text = "Resource= " + m_player.GetComponent<Player>().m_resource + "  " +
-                                          "Life= " + m_player.GetComponent<Player>().m_life;
+        gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().m_life;
 
     }
 }
