@@ -52,6 +52,8 @@ public class Player : MonoBehaviour, IFixable<int> {
         set
         {
             m_resource = value;
+            if (m_resource < 0)
+                m_resource = 0;
         }
     }
 

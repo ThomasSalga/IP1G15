@@ -13,6 +13,7 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
     protected GameObject m_prefabGO;
 
     private float m_lastShot;
+    private float m_lastPenny;
     #endregion
 
     #region Interfaces' Properties
@@ -88,6 +89,11 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
                 {
                     StartCoroutine(RecurAction());
                     m_lastShot = Time.time;
+                }
+                if (Time.time > m_atkSpeed*2 + m_lastPenny)
+                {
+                    FindObjectOfType<Player>().MyResource++;
+                    m_lastPenny = Time.time;
                 }
                 break;
         }
