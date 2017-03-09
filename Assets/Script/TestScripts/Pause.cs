@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
 
 	void Update()
 	{
-        if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!pausePanel.activeInHierarchy)
             {
@@ -51,4 +51,15 @@ public class Pause : MonoBehaviour
 		yield return new WaitForSecondsRealtime(2);
 		//enable the scripts again
 	}
+
+	public void PausePress(){
+	if (!pausePanel.activeInHierarchy)
+	{
+		if (!pausePanel.activeInHierarchy)
+			StartCoroutine(PauseGame());
+	}
+	else StartCoroutine(ContinueGame());
 }
+}
+
+
