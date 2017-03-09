@@ -6,7 +6,10 @@ public class HealingTower : TowerParent, IRecurringAction {
 
     [SerializeField]
     private float m_healRate;
+    [SerializeField]
     private int m_healingPower;
+
+    private float m_lastHeal;
 
     public float MyActionTimeGap
     {
@@ -36,6 +39,25 @@ public class HealingTower : TowerParent, IRecurringAction {
         m_buildingSpace.Add(Vector2.up);
     }
 
+    protected override void CheckState()
+    {
+        switch (m_state)
+        {
+            case DefenceState.ToPlace:
+                transform.position = Drag();
+                //DefenceStateToPlace();
+                break;
+
+            case DefenceState.Placed:
+                if (Time.time > MyActionTimeGap + m_lastHeal)
+                {
+                    StartCoroutine(RecurAction());
+                    m_lastHeal = Time.time;
+                }
+                break;
+        }
+    }
+
     // Update is called once per frame
     void Update ()
     {
@@ -44,6 +66,8 @@ public class HealingTower : TowerParent, IRecurringAction {
 
     void Heal(int amount)
     {
-        MyDurability += amount;
+        Debug.Log("HEAL");
+        FindObjectOfType<Player>().MyDurability += amount;
+        RecurAction();
     }
 }
