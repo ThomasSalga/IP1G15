@@ -80,9 +80,12 @@ public class Grid : MonoBehaviour {
     {
         for (int y = 0; y < m_rows; y++)
         {
-            for (int x = m_columns / 2; x >= 0; x--)
+            for (int x = (m_columns / 2) - 1; x >= 0; x--)
             {
-                m_grid[y, x].GetComponent<Cell>().IsBlocked = true;
+                Debug.Log(y + "-" + x);
+                Debug.Log( m_grid[y, x].GetComponent<Cell>().name);
+
+                m_grid[y, x].GetComponent<Cell>().LockThis();
             }
         }
     }
@@ -91,9 +94,11 @@ public class Grid : MonoBehaviour {
     {
         for (int y = 0; y < m_rows; y++)
         {
-            for (int x = m_columns / 2; x >= 0; x--)
+            for (int x = (m_columns / 2) - 1; x >= 0; x--)
             {
-                m_grid[y, x].GetComponent<Cell>().IsBlocked = false;
+                Debug.Log(" m_grid[y, x].GetComponent<Cell>().name");
+
+                m_grid[y, x].GetComponent<Cell>().UnlockThis();
             }
         }
     }
