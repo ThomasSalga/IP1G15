@@ -5,7 +5,7 @@ using System;
 
 public enum DefenceState { ToPlace, Placed };
 
-public abstract class TowerParent : LivingObject, IDamageable<int> {
+public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int> {
 
     #region members
     [SerializeField]
@@ -16,6 +16,8 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
     protected float m_adjustPosX;
     [SerializeField]
     protected float m_adjustPosY;
+    [SerializeField]
+    protected int cost;
 
     protected GameObject m_hit;
     protected Vector3 m_pos;
@@ -37,6 +39,19 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
         set
         {
             m_hp = value;
+        }
+    }
+
+    public int MyPrice
+    {
+        get
+        {
+            return cost;
+        }
+
+        set
+        {
+            cost = value;
         }
     }
 
@@ -101,10 +116,11 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
                 if (SecurePos(m_originX, m_originY, m_buildingSpace))
                 {
                     PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
-                    if (Input.GetButtonDown("Fire1"))
+                    if (Input.GetButtonDown("Fire1") && FindObjectOfType<Player>().MyResource - MyPrice >= 0)
                     {
                         BlockSpace(m_originX, m_originY, m_buildingSpace);
                         m_state = DefenceState.Placed;
+                        FindObjectOfType<Player>().MyResource -= MyPrice;
                         PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
                         m_pos = m_hit.transform.position;
                         m_pos.z = 0;
@@ -112,6 +128,10 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
                         m_pos.y += m_adjustPosY;
                         gameObject.GetComponent<Collider2D>().enabled = true;
                         return m_pos;
+                    }
+                    else if (FindObjectOfType<Player>().MyResource - MyPrice < 0)
+                    {
+                        Destroy(gameObject);
                     }
                 }
                 else
