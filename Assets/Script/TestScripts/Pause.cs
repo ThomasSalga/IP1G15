@@ -6,6 +6,7 @@ public class Pause : MonoBehaviour
 {
 	public GameObject pausePanel;
 	public GameObject effectCamera;
+	public GameObject pauseButton;
 
 
 
@@ -13,32 +14,16 @@ public class Pause : MonoBehaviour
 	{
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
+		pauseButton.SetActive(true);
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!pausePanel.activeInHierarchy)
-            {
-                if (!pausePanel.activeInHierarchy)
-                    StartCoroutine(PauseGame());
-            }
-            else StartCoroutine(ContinueGame());
+		
         }
 
 
-       // if (Input.GetKeyDown(KeyCode.Escape)) // you were calling twice in the same frame that's why was pausing and unpausing 
-       // {
-       //     if (pausePanel.activeInHierarchy)
-       //     {
-       //         if (pausePanel.activeInHierarchy) // you are controlling twice the same thing
-       //         {
-       //             StartCoroutine (ContinueGame ());  
-       //         }
-       //     }
-       // }
-	}
+
 
 	//private void PauseGame()
 	IEnumerator PauseGame()
@@ -46,17 +31,20 @@ public class Pause : MonoBehaviour
 		Time.timeScale = 0;
 		pausePanel.SetActive(true);
 		effectCamera.SetActive(true);
+		pauseButton.SetActive(false);
 		Debug.Log ("Game Paused");
 		//Disable scripts that still work while timescale is set to 0
-		yield return new WaitForSecondsRealtime(2);
+		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 	} 
 	IEnumerator ContinueGame()
 	{
 		Time.timeScale = 1;
 		pausePanel.SetActive(false);
 		effectCamera.SetActive(false);
+		pauseButton.SetActive(true);
 		Debug.Log ("Game Resumed");
-		yield return new WaitForSecondsRealtime(2);
+		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
+
 		//enable the scripts again
 	}
 
