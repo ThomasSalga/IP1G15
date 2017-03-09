@@ -82,9 +82,6 @@ public class Grid : MonoBehaviour {
         {
             for (int x = (m_columns / 2) - 1; x >= 0; x--)
             {
-                Debug.Log(y + "-" + x);
-                Debug.Log( m_grid[y, x].GetComponent<Cell>().name);
-
                 m_grid[y, x].GetComponent<Cell>().LockThis();
             }
         }

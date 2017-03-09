@@ -114,7 +114,14 @@ public abstract class TowerParent : LivingObject, IDamageable<int> {
                         return m_pos;
                     }
                 }
-                else PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
+                else
+                {
+                    PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        Destroy(gameObject);
+                    }
+                }
                 m_pos = m_hit.transform.position;
                 m_pos.z = 0;
                 m_pos.x += m_adjustPosX;

@@ -38,11 +38,9 @@ public class Cell : MonoBehaviour {
     #endregion
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         m_blocked = false;
-        Debug.Log("SBLOCCATAAAAAAA");
-
     }
 
     // Update is called once per frame
@@ -53,14 +51,11 @@ public class Cell : MonoBehaviour {
 
     public void LockThis()
     {
-        Debug.Log(" BLOCCATAAAAA");
-
         m_blocked = true;
     }
 
     public void UnlockThis()
     {
-        Debug.Log("SBLOCCATAAAAAAA");
         m_blocked = false;
     }
 }
