@@ -7,6 +7,7 @@ public class Pause : MonoBehaviour
 	public GameObject pausePanel;
 	public GameObject effectCamera;
 	public GameObject pauseButton;
+	public AudioSource clickSound;
 
 
 
@@ -49,6 +50,10 @@ public class Pause : MonoBehaviour
 	}
 
 	public void PausePress(){
+
+	
+		clickSound.Play();
+
 	if (!pausePanel.activeInHierarchy)
 	{
 		if (!pausePanel.activeInHierarchy)
@@ -77,6 +82,7 @@ public class Pause : MonoBehaviour
 	}
 
 	IEnumerator DelayReturnToMainMenu(){
+		Time.timeScale = 1;
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		Debug.Log ("The click worked.");

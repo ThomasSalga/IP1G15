@@ -11,11 +11,11 @@ public class TypeScript : MonoBehaviour
 	string story;
 	public bool PlayOnAwake = true;
 	public float Delay;
-	public AudioSource audio;
+	public AudioSource typeSound;
 
 	void Start(){
 
-		audio = GetComponent<AudioSource>();
+		typeSound = GetComponent<AudioSource>();
 
 	}
 
@@ -45,7 +45,7 @@ public class TypeScript : MonoBehaviour
 		foreach (char c in story)
 		{
 			txt.text += c;
-			audio.Play();
+			typeSound.Play();
 			yield return new WaitForSeconds(0.125f);
 		}
 	}
