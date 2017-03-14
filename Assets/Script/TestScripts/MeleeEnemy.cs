@@ -9,6 +9,9 @@ public class MeleeEnemy : EnemyParent
         if (MyTarget != null)
         {
             StartCoroutine(RecurAction());
+			Animator animator = GetComponent<Animator>() as Animator;
+			animator.SetTrigger("attacking");
+
             MyTarget.GetComponent<TowerParent>().TakeDamage(MyDamage);
         }
         //else m_state = EnemyState.Move;
