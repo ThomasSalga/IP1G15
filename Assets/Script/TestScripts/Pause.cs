@@ -6,15 +6,25 @@ public class Pause : MonoBehaviour
 {
 	public GameObject pausePanel;
 	public GameObject effectCamera;
-	public GameObject pauseButton;
+	public AudioSource clickSound;
+	public GameObject restartToggle;
+	public GameObject mainCanvas;
+
+
 
 
 
 	void Start()
 	{
+		mainCanvas.SetActive (true);
+		restartToggle.SetActive(false);
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
+<<<<<<< HEAD
 		//pauseButton.SetActive(true);
+=======
+		Time.timeScale = 1;
+>>>>>>> origin/master
 	}
 
 	void Update()
@@ -29,9 +39,13 @@ public class Pause : MonoBehaviour
 	IEnumerator PauseGame()
 	{
 		Time.timeScale = 0;
+		mainCanvas.SetActive (false);
 		pausePanel.SetActive(true);
 		effectCamera.SetActive(true);
+<<<<<<< HEAD
 		//pauseButton.SetActive(false);
+=======
+>>>>>>> origin/master
 		Debug.Log ("Game Paused");
 		//Disable scripts that still work while timescale is set to 0
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
@@ -39,9 +53,13 @@ public class Pause : MonoBehaviour
 	IEnumerator ContinueGame()
 	{
 		Time.timeScale = 1;
+		mainCanvas.SetActive (true);
 		pausePanel.SetActive(false);
 		effectCamera.SetActive(false);
+<<<<<<< HEAD
 		//pauseButton.SetActive(true);
+=======
+>>>>>>> origin/master
 		Debug.Log ("Game Resumed");
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 
@@ -49,6 +67,10 @@ public class Pause : MonoBehaviour
 	}
 
 	public void PausePress(){
+
+	
+		clickSound.Play();
+
 	if (!pausePanel.activeInHierarchy)
 	{
 		if (!pausePanel.activeInHierarchy)
@@ -71,12 +93,26 @@ public class Pause : MonoBehaviour
 	}
 
 
+	public void Restart(){
+		StartCoroutine (DelayRestart());
+	}
+
+	IEnumerator DelayRestart(){
+		Time.timeScale = 1;
+		restartToggle.SetActive(true);
+		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
+		Debug.Log ("The click worked.");
+		SceneManager.LoadScene ("MainLevel");
+	}
+
 
 	public void ReturnToMainMenu(){
 		StartCoroutine (DelayReturnToMainMenu());
 	}
 
 	IEnumerator DelayReturnToMainMenu(){
+		Time.timeScale = 1;
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		Debug.Log ("The click worked.");
