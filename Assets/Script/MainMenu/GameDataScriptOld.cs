@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameDataScript : MonoBehaviour {
+public class GameDataScriptOld : MonoBehaviour {
 
 
 	public Slider volslider;
