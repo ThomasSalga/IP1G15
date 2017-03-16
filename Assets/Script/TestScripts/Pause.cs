@@ -20,11 +20,7 @@ public class Pause : MonoBehaviour
 		restartToggle.SetActive(false);
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
-<<<<<<< HEAD
-		//pauseButton.SetActive(true);
-=======
 		Time.timeScale = 1;
->>>>>>> origin/master
 	}
 
 	void Update()
@@ -42,24 +38,17 @@ public class Pause : MonoBehaviour
 		mainCanvas.SetActive (false);
 		pausePanel.SetActive(true);
 		effectCamera.SetActive(true);
-<<<<<<< HEAD
-		//pauseButton.SetActive(false);
-=======
->>>>>>> origin/master
 		Debug.Log ("Game Paused");
 		//Disable scripts that still work while timescale is set to 0
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
-	} 
+	}
+
 	IEnumerator ContinueGame()
 	{
 		Time.timeScale = 1;
 		mainCanvas.SetActive (true);
 		pausePanel.SetActive(false);
 		effectCamera.SetActive(false);
-<<<<<<< HEAD
-		//pauseButton.SetActive(true);
-=======
->>>>>>> origin/master
 		Debug.Log ("Game Resumed");
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 

@@ -40,7 +40,6 @@ public class HealthBarScript : MonoBehaviour {
 	void FixedUpdate () {
 	
 		int health = GameObject.Find ("PlayerGameObject").GetComponent<Player> ().m_life;
-		Debug.Log (health);
 
 		if ((health <= 100) && (health >= 95)) {
 			healthBar.sprite = health100;
