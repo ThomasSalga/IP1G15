@@ -6,7 +6,7 @@ using System;
 public class Player : MonoBehaviour, IFixable<int> {
 
     [SerializeField]
-    private int m_maxLife;
+    public int m_maxLife;
     [SerializeField]
     public int m_life;
     [SerializeField]

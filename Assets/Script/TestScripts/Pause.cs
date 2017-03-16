@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
 	public AudioSource clickSound;
 	public GameObject restartToggle;
 	public GameObject mainCanvas;
+	public GameObject musicPlaying;
 
 
 
@@ -34,6 +35,7 @@ public class Pause : MonoBehaviour
 	//private void PauseGame()
 	IEnumerator PauseGame()
 	{
+		musicPlaying.GetComponent<AudioSource> ().Pause();
 		Time.timeScale = 0;
 		mainCanvas.SetActive (false);
 		pausePanel.SetActive(true);
@@ -45,6 +47,7 @@ public class Pause : MonoBehaviour
 
 	IEnumerator ContinueGame()
 	{
+		musicPlaying.GetComponent<AudioSource> ().Play();
 		Time.timeScale = 1;
 		mainCanvas.SetActive (true);
 		pausePanel.SetActive(false);
@@ -76,9 +79,10 @@ public class Pause : MonoBehaviour
 			StartCoroutine (DelayGoToGuide());
 		}
 		IEnumerator DelayGoToGuide(){
+		Time.timeScale = 1;
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
-		//SceneManager.LoadScene ("MainLevel");
+		SceneManager.LoadScene ("GuideScene");
 	}
 
 

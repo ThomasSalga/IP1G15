@@ -10,9 +10,10 @@ public class MeleeEnemy : EnemyParent
         {
             StartCoroutine(RecurAction());
 			Animator animator = GetComponent<Animator>() as Animator;
-			animator.SetTrigger("attacking");
+			animator.SetBool("attacking", true);
 
             MyTarget.GetComponent<TowerParent>().TakeDamage(MyDamage);
+			GetComponent<AudioSource>().Play ();
         }
         //else m_state = EnemyState.Move;
     }

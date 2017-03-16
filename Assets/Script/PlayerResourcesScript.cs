@@ -20,10 +20,10 @@ public class PlayerResourcesScript : MonoBehaviour {
 	void Update () {
 	
 		GameObject.Find ("PlayerGameObject").GetComponent<Player>();
-		playerHealthSave = Player.m_life;
+		//playerHealthSave = Player.m_life;
 
 		GameObject.Find ("PlayerGameObject").GetComponent<Player>();
-		playerResourceSave = Player.m_resource;
+		//playerResourceSave = Player.m_resource;
 
 
 

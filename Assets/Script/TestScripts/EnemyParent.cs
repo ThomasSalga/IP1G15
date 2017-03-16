@@ -167,6 +167,7 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     {
         //do funny things
         Destroy(gameObject);
+		GameObject.Find ("DeathSound").GetComponent<AudioSource> ().Play ();
     }
 
     public void TakeDamage(int amount)
@@ -213,6 +214,7 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     public virtual IEnumerator RecurAction()
     {
         yield return new WaitForSeconds(m_atkSpeed);
+	
         Attack();
     }
 }

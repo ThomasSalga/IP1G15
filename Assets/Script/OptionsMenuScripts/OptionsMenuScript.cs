@@ -10,19 +10,94 @@ public class OptionsMenuScript : MonoBehaviour {
 
 
 	public AudioMixer masterMixer;
+	public GameObject musicMute;
+	public GameObject musicUnmute;
+	public GameObject fxMute;
+	public GameObject fxUnmute;
 
 
 	// Use this for initialization
 	void Start () {
 
+		float currentFX;
+		float currentMusic;
+
+		masterMixer.GetFloat ("FXVolume", out currentFX);
+		masterMixer.GetFloat ("MusicVolume", out currentMusic);
+
+		if (currentFX == 0 && currentMusic == 0) {
+			musicMute.SetActive (true);
+			musicUnmute.SetActive (false);
+			fxMute.SetActive (true);
+			fxUnmute.SetActive (false);
+		}
+		if(currentFX == 0 && currentMusic == -80) {
+			musicMute.SetActive (false);
+			musicUnmute.SetActive (true);
+			fxMute.SetActive (true);
+			fxUnmute.SetActive (false);
+		}
+		if (currentFX == -80 && currentMusic == 0) {
+			musicMute.SetActive (true);
+			musicUnmute.SetActive (false);
+			fxMute.SetActive (false);
+			fxUnmute.SetActive (true);
+		}
+		if (currentFX == -80 && currentMusic == -80) {
+			musicMute.SetActive (false);
+			musicUnmute.SetActive (true);
+			fxMute.SetActive (false);
+			fxUnmute.SetActive (true);
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+
+
 	}
 
-	public void SetMainVolume(float mainVolume){
+
+	public void FXMute(){
+
+
+		masterMixer.SetFloat ("FXVolume", -80);
+		fxMute.SetActive (false);
+		fxUnmute.SetActive (true);
+
+	}
+
+	public void FXUnmute(){
+		
+			masterMixer.SetFloat ("FXVolume", 0);
+			fxMute.SetActive (true);
+			fxUnmute.SetActive (false);
+	}
+
+
+	public void MusicMute(){
+
+		masterMixer.SetFloat ("MusicVolume", -80);
+		musicMute.SetActive (false);
+		musicUnmute.SetActive (true);
+
+}
+
+	public void MusicUnmute(){
+
+		masterMixer.SetFloat ("MusicVolume", 0);
+		musicMute.SetActive (true);
+		musicUnmute.SetActive (false);
+
+	}
+
+
+
+
+
+	/*public void SetMainVolume(float mainVolume){
 
 		masterMixer.SetFloat ("MainVolume", mainVolume);
 	}
@@ -37,7 +112,11 @@ public class OptionsMenuScript : MonoBehaviour {
 
 		masterMixer.SetFloat ("SoundEffectsVolume", soundEffectsVolume);
 
-	}
+	}*/
+
+
+
+
 
 
 	public void ReturnToMainMenu(){

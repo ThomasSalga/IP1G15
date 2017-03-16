@@ -20,10 +20,13 @@ public class EnemyBase : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag != "Enemy")
-        {
-            Destroy(other.gameObject);
-        }
-    }
+	{
+		if (other.gameObject.tag != "Enemy") {
+			Destroy (other.gameObject);
+
+
+		} else {
+			GetComponent<AudioSource>().Play ();
+		}
+	}
 }

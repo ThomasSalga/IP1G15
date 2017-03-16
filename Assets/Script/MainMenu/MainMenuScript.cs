@@ -45,7 +45,15 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void QuitGame(){
 		StartCoroutine (DelayQuitGame ());
+
 	}
+
+	public void GoGuide(){
+
+		StartCoroutine (DelayGoGuide ());
+	}
+
+
 
 	IEnumerator DelayPlayGame(){
 
@@ -60,6 +68,13 @@ public class MainMenuScript : MonoBehaviour {
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		SceneManager.LoadScene ("OptionsMenuScene");
+	}
+
+	IEnumerator DelayGoGuide(){
+
+		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
+		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
+		SceneManager.LoadScene ("GuideScene");
 	}
 
 	IEnumerator DelayQuitGame(){
