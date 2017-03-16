@@ -14,7 +14,7 @@ public class Pause : MonoBehaviour
 	{
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
-		pauseButton.SetActive(true);
+		//pauseButton.SetActive(true);
 	}
 
 	void Update()
@@ -31,7 +31,7 @@ public class Pause : MonoBehaviour
 		Time.timeScale = 0;
 		pausePanel.SetActive(true);
 		effectCamera.SetActive(true);
-		pauseButton.SetActive(false);
+		//pauseButton.SetActive(false);
 		Debug.Log ("Game Paused");
 		//Disable scripts that still work while timescale is set to 0
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
@@ -41,7 +41,7 @@ public class Pause : MonoBehaviour
 		Time.timeScale = 1;
 		pausePanel.SetActive(false);
 		effectCamera.SetActive(false);
-		pauseButton.SetActive(true);
+		//pauseButton.SetActive(true);
 		Debug.Log ("Game Resumed");
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 

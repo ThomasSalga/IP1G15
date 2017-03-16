@@ -66,7 +66,6 @@ public class HealingTower : TowerParent, IRecurringAction {
 
     void Heal(int amount)
     {
-        Debug.Log("HEAL");
         FindObjectOfType<Player>().MyDurability += amount;
         RecurAction();
     }
