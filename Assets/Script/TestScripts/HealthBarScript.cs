@@ -31,7 +31,7 @@ public class HealthBarScript : MonoBehaviour {
 	void Start () {
 	
 		healthBar = GetComponent<SpriteRenderer>();
-		healthBar.sprite = health100;
+	
 	}
 
 
@@ -39,69 +39,76 @@ public class HealthBarScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 	
-		int health = GameObject.Find ("PlayerGameObject").GetComponent<Player> ().m_life;
+		float health = (float)GameObject.Find ("PlayerGameObject").GetComponent<Player> ().MyDurability;
+		float maxHealth = (float)GameObject.Find ("PlayerGameObject").GetComponent<Player> ().MyMaxDurability;
+		float nonFinalHealth = health / maxHealth;
+		float finalHealth = nonFinalHealth * 100;
+		Debug.Log ("Health is " + health);
+		Debug.Log ("Max Health is " + maxHealth);
+		Debug.Log ("NonFinalHealth is " + nonFinalHealth);
+		Debug.Log ("FinalHealth is " + finalHealth);
 
-		if ((health <= 100) && (health >= 95)) {
+		if ((finalHealth <= 100) && (finalHealth > 95)) {
 			healthBar.sprite = health100;
 		}
-		if ((health <= 95) && (health > 90)) {
+		if ((finalHealth <= 95) && (finalHealth > 90)) {
 			healthBar.sprite = health95;
 		}
-		if ((health <= 90) && (health > 85)) {
+		if ((finalHealth <= 90) && (finalHealth > 85)) {
 			healthBar.sprite = health90;
 		}
-		if ((health <= 85) && (health > 80)) {
+		if ((finalHealth <= 85) && (finalHealth > 80)) {
 			healthBar.sprite = health85;
 		}
-		if ((health <= 80) && (health > 75)) {
+		if ((finalHealth <= 80) && (finalHealth > 75)) {
 			healthBar.sprite = health80;
 		}
-		if ((health <= 75) && (health > 70)) {
+		if ((finalHealth <= 75) && (finalHealth > 70)) {
 			healthBar.sprite = health75;
 		}
-		if ((health <= 70) && (health > 65)) {
+		if ((finalHealth <= 70) && (finalHealth > 65)) {
 			healthBar.sprite = health70;
 		}
-		if ((health <= 65) && (health > 60)) {
+		if ((finalHealth <= 65) && (finalHealth > 60)) {
 			healthBar.sprite = health65;
 		}
-		if ((health <= 60) && (health > 55)) {
+		if ((finalHealth <= 60) && (finalHealth > 55)) {
 			healthBar.sprite = health60;
 		}
-		if ((health <= 55) && (health > 50)) {
+		if ((finalHealth <= 55) && (finalHealth > 50)) {
 			healthBar.sprite = health55;
 		}
-		if ((health <= 50) && (health > 45)) {
+		if ((finalHealth <= 50) && (finalHealth > 45)) {
 			healthBar.sprite = health50;
 		}
-		if ((health <= 45) && (health > 40)) {
+		if ((finalHealth <= 45) && (finalHealth > 40)) {
 			healthBar.sprite = health45;
 		}
-		if ((health <= 40) && (health > 35)) {
+		if ((finalHealth <= 40) && (finalHealth > 35)) {
 			healthBar.sprite = health40;
 		}
-		if ((health <= 35) && (health > 30)) {
+		if ((finalHealth <= 35) && (finalHealth > 30)) {
 			healthBar.sprite = health35;
 		}
-		if ((health <= 30) && (health > 25)) {
+		if ((finalHealth <= 30) && (finalHealth > 25)) {
 			healthBar.sprite = health30;
 		}
-		if ((health <= 25) && (health > 20)) {
+		if ((finalHealth <= 25) && (finalHealth > 20)) {
 			healthBar.sprite = health25;
 		}
-		if ((health <= 20) && (health > 15)) {
+		if ((finalHealth <= 20) && (finalHealth > 15)) {
 			healthBar.sprite = health20;
 		}
-		if ((health <= 15) && (health > 10)) {
+		if ((finalHealth <= 15) && (finalHealth > 10)) {
 			healthBar.sprite = health15;
 		}
-		if ((health <= 10) && (health > 5)) {
+		if ((finalHealth <= 10) && (finalHealth > 5)) {
 			healthBar.sprite = health10;
 		}
-		if ((health <= 5) && (health > 0)) {
+		if ((finalHealth <= 5) && (finalHealth > 0)) {
 			healthBar.sprite = health05;
 		}
-		if ((health <= 0) && (health >= 0)) {
+		if ((finalHealth <= 0) && (finalHealth >= 0)) {
 			healthBar.sprite = health00;
 		}
 

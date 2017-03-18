@@ -42,6 +42,19 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
         }
     }
 
+	public int MyMaxDurability
+	{
+		get
+		{
+			return m_hp;
+		}
+
+		set
+		{
+			m_hp = value;
+		}
+	}
+
     public int MyPrice
     {
         get

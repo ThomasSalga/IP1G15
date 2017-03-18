@@ -6,11 +6,11 @@ using System;
 public class Player : MonoBehaviour, IFixable<int> {
 
     [SerializeField]
-    public int m_maxLife;
+    private int m_maxLife;
     [SerializeField]
-    public int m_life;
+	private int m_life;
     [SerializeField]
-    public int m_resource;
+    private int m_resource;
 
     public int MyMaxDurability
     {

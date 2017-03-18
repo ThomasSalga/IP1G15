@@ -1,20 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class MeleeEnemy : EnemyParent
 {
     public override void Attack()
-    {
-        Stop();
-        if (MyTarget != null)
-        {
-            StartCoroutine(RecurAction());
-			Animator animator = GetComponent<Animator>() as Animator;
-			animator.SetBool("attacking", true);
+	{
+		Stop ();
+		if (MyTarget != null) {
+			
+			StartCoroutine (RecurAction ());
+			MyTarget.GetComponent<TowerParent> ().TakeDamage (MyDamage);
 
-            MyTarget.GetComponent<TowerParent>().TakeDamage(MyDamage);
-			GetComponent<AudioSource>().Play ();
-        }
-        //else m_state = EnemyState.Move;
-    }
+		} 
+	}
+		public override IEnumerator RecurAction ()
+	{
+
+
+
+			GetComponent<AudioSource> ().Play ();
+			
+
+			yield return new WaitForSeconds (m_atkSpeed);
+
+			Attack ();
+
+		}
+
+    
 }

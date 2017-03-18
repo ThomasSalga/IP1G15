@@ -166,8 +166,9 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     public override void Death()
     {
         //do funny things
-        Destroy(gameObject);
 		GameObject.Find ("DeathSound").GetComponent<AudioSource> ().Play ();
+        Destroy(gameObject);
+
     }
 
     public void TakeDamage(int amount)
@@ -189,6 +190,18 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
 
     public virtual void Stop()
     {
+		if (MyTarget != null) {
+			Animator animator = GetComponent<Animator> () as Animator;
+			animator.SetBool ("attacking", true);
+
+		} else {
+			Animator animator = GetComponent<Animator> () as Animator;
+			animator.SetBool ("attacking", false);
+		}
+			
+
+
+
         MyRigidBody.velocity = new Vector2(0, 0); // stops the rigid body
     }
 
