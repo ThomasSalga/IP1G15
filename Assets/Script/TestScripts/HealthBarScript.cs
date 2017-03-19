@@ -43,10 +43,7 @@ public class HealthBarScript : MonoBehaviour {
 		float maxHealth = (float)GameObject.Find ("PlayerGameObject").GetComponent<Player> ().MyMaxDurability;
 		float nonFinalHealth = health / maxHealth;
 		float finalHealth = nonFinalHealth * 100;
-		Debug.Log ("Health is " + health);
-		Debug.Log ("Max Health is " + maxHealth);
-		Debug.Log ("NonFinalHealth is " + nonFinalHealth);
-		Debug.Log ("FinalHealth is " + finalHealth);
+
 
 		if ((finalHealth <= 100) && (finalHealth > 95)) {
 			healthBar.sprite = health100;

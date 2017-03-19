@@ -10,6 +10,9 @@ public class Pause : MonoBehaviour
 	public GameObject restartToggle;
 	public GameObject mainCanvas;
 	public GameObject musicPlaying;
+	public GameObject warning;
+	public float appearTime;
+	public float disappearTime;
 
 
 
@@ -21,7 +24,10 @@ public class Pause : MonoBehaviour
 		restartToggle.SetActive(false);
 		effectCamera.SetActive(false);
 		pausePanel.SetActive(false);
+		warning.SetActive(false);
 		Time.timeScale = 1;
+		StartCoroutine(WarningAppear());
+		StartCoroutine (WarningDisappear());
 	}
 
 	void Update()
@@ -29,6 +35,20 @@ public class Pause : MonoBehaviour
 		
         }
 
+
+	IEnumerator WarningAppear()
+	{
+		yield return new WaitForSeconds(appearTime);
+		warning.SetActive(true);
+
+	}
+
+	IEnumerator WarningDisappear()
+	{
+		yield return new WaitForSeconds(disappearTime);
+		warning.SetActive(false);
+
+	}
 
 
 

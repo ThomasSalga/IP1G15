@@ -3,35 +3,43 @@ using System.Collections;
 
 public class BuildingDamageScript : MonoBehaviour {
 
-	public SpriteRenderer;
+	public SpriteRenderer damageVisual;
+	public Sprite stage1;
+	public Sprite stage2;
+	public Sprite stage3;
+	public Sprite stage4;
+	float actualHealth;
+
 
 	// Use this for initialization
 	void Start () {
 	
+		actualHealth= (float)gameObject.GetComponent<TowerParent> ().MyDurability/5;
+
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 	
 
-		gameObject.GetComponent<SpriteRenderer>().sprite;
+		damageVisual = gameObject.GetComponent<SpriteRenderer>();
 
-		float actualhealth= (float)gameObject.GetComponent<TowerParent> ().MyDurability/4;
+
 
 		float finalHealth = (float)gameObject.GetComponent<TowerParent> ().MyDurability; //75
 	
 
-		if (finalHealth <= actualhealth) {
-			healthBar.sprite = health100;
+		if (finalHealth == actualHealth * 5) {
+			damageVisual.sprite = stage1;
 		}
-		if (finalHealth <= actualhealth/4 * 3) {
-			healthBar.sprite = health95;
+		if (finalHealth == actualHealth * 4) {
+			damageVisual.sprite = stage2;
 		}
-		if (finalHealth <= actualhealth) {
-			healthBar.sprite = health90;
+		if (finalHealth == actualHealth * 3) {
+			damageVisual.sprite = stage3;
 		}
-		if (finalHealth <= actualhealth) {
-			healthBar.sprite = health85;
+		if (finalHealth == actualHealth * 2) {
+			damageVisual.sprite = stage4;
 		}
 
 	}
