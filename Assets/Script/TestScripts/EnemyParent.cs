@@ -167,6 +167,7 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     {
         //do funny things
 		GameObject.Find ("DeathSound").GetComponent<AudioSource> ().Play ();
+        gameObject.GetComponent<MoneyResource>().OneShotEarnMoney(gameObject.GetComponent<MoneyResource>().m_earningAmount);
         Destroy(gameObject);
 
     }

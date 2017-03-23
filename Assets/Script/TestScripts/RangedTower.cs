@@ -13,7 +13,6 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
     protected GameObject m_prefabGO;
 
     private float m_lastShot;
-    private float m_lastPenny;
     #endregion
 
     #region Interfaces' Properties
@@ -101,7 +100,7 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
 
     public override void StateTransition()
     {
-        Debug.Log("CALL ME SENPAIIII");
-        GetComponent<MoneyResource>().RecurAction();
+        Debug.Log("in");
+        StartCoroutine(gameObject.GetComponent<MoneyResource>().RecurAction());
     }
 }

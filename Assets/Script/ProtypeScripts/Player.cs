@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System;
 
 public class Player : MonoBehaviour, IFixable<int> {
@@ -61,6 +62,11 @@ public class Player : MonoBehaviour, IFixable<int> {
     void Start ()
     {
 	}
+
+    void FixedUpdate()
+    {
+        GameObject.FindGameObjectWithTag("Resource").GetComponent<Text>().text = " " + MyResource;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -5,7 +5,6 @@ using System;
 
 public class MoneyResource : MonoBehaviour, IRecurringAction
 {
-
     [SerializeField]
     private float m_earningRate;
     [SerializeField]
@@ -36,7 +35,7 @@ public class MoneyResource : MonoBehaviour, IRecurringAction
     public void EarnMoney(int amount)
     {
         FindObjectOfType<Player>().MyResource += amount;
-        RecurAction();
+        StartCoroutine(RecurAction());
     }
 
     public void OneShotEarnMoney(int amount)
