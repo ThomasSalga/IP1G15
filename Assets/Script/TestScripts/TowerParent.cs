@@ -133,6 +133,7 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
                     {
                         BlockSpace(m_originX, m_originY, m_buildingSpace);
                         m_state = DefenceState.Placed;
+                        StateTransition();
                         FindObjectOfType<Player>().MyResource -= MyPrice;
                         PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
                         m_pos = m_hit.transform.position;
@@ -204,6 +205,11 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
     void PlacementFeedback(SpriteRenderer rendererObj, Color apply)
     {
         rendererObj.color = apply;
+    }
+
+    public virtual void StateTransition()
+    {
+        //nothing normally
     }
     
 }

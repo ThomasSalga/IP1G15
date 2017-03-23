@@ -58,12 +58,6 @@ public class HealingTower : TowerParent, IRecurringAction {
         }
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-	    
-	}
-
     void Heal(int amount)
     {
         FindObjectOfType<Player>().MyDurability += amount;

@@ -1,24 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
-public class MoneyResource : MonoBehaviour {
+public class MoneyResource : MonoBehaviour, IRecurringAction
+{
 
+    [SerializeField]
+    private float m_earningRate;
+    [SerializeField]
+    public int m_earningAmount;
 
+    private float m_lastPenny;
+    private GameObject m_player;
 
-		GameObject m_player;
+    public float MyActionTimeGap
+    {
+        get
+        {
+            return m_earningRate;
+        }
 
-		// Use this for initialization
-		void Start () {
+        set
+        {
+            m_earningRate = value;
+        }
+    }
 
-		}
+    public IEnumerator RecurAction()
+    {
+        yield return new WaitForSeconds(MyActionTimeGap);
+        EarnMoney(m_earningAmount);
+    }
 
-		// Update is called once per frame
-		void Update ()
-		{
-			m_player = GameObject.FindGameObjectWithTag("Player");
+    public void EarnMoney(int amount)
+    {
+        FindObjectOfType<Player>().MyResource += amount;
+        RecurAction();
+    }
 
-			gameObject.GetComponent<Text>().text = " " + m_player.GetComponent<Player>().MyResource;
+    public void OneShotEarnMoney(int amount)
+    {
+        FindObjectOfType<Player>().MyResource += amount;
+    }
 
-		}
-	}
+}

@@ -26,7 +26,7 @@ public class EnemyBase : MonoBehaviour {
 
 
 		} else {
-			GetComponent<AudioSource>().Play ();
+			//GetComponent<AudioSource>().Play ();
 		}
 	}
 }

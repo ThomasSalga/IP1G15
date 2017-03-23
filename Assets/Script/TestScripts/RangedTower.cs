@@ -90,11 +90,6 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
                     StartCoroutine(RecurAction());
                     m_lastShot = Time.time;
                 }
-                if (Time.time > m_atkSpeed*2 + m_lastPenny)
-                {
-                    FindObjectOfType<Player>().MyResource++;
-                    m_lastPenny = Time.time;
-                }
                 break;
         }
     }
@@ -102,5 +97,11 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
     public void SpawnGO(GameObject go)
     {
         Instantiate(go, transform.position, Quaternion.identity);
+    }
+
+    public override void StateTransition()
+    {
+        Debug.Log("CALL ME SENPAIIII");
+        GetComponent<MoneyResource>().RecurAction();
     }
 }
