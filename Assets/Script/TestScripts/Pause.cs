@@ -116,7 +116,7 @@ public class Pause : MonoBehaviour
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		Debug.Log ("The click worked.");
-		SceneManager.LoadScene ("MainLevel");
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
 

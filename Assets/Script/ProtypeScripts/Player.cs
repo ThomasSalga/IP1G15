@@ -12,6 +12,8 @@ public class Player : MonoBehaviour, IFixable<int> {
 	private int m_life;
     [SerializeField]
     private int m_resource;
+	[SerializeField]
+	private GameObject loseCanvas;
 
     public int MyMaxDurability
     {
@@ -38,10 +40,25 @@ public class Player : MonoBehaviour, IFixable<int> {
             m_life = value;
             if (m_life <= 0)
             {
-                SceneManager.LoadScene("DeadScene");
+
+				LoseGame ();
+
+				//SceneManager.LoadScene("DeadScene");
             }
         }
     }
+
+	public void LoseGame(){
+
+		loseCanvas = GameObject.Find ("LoseCanvas");
+
+		loseCanvas.SetActive (true);
+
+		Time.timeScale = 0;
+
+	}
+
+
 
     public int MyResource
     {
@@ -61,6 +78,11 @@ public class Player : MonoBehaviour, IFixable<int> {
     // Use this for initialization
     void Start ()
     {
+
+		Time.timeScale = 1;
+		GameObject.Find ("LoseCanvas").SetActive (false);
+		GameObject.Find ("WinCanvas").SetActive (false);
+
 	}
 
     void FixedUpdate()

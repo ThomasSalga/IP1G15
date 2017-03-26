@@ -22,7 +22,7 @@ public class SelectionMenuScript : MonoBehaviour {
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource>().Play();
 		//yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		yield return new WaitForSeconds (0.2f);
-		SceneManager.LoadScene ("MainLevel");
+		SceneManager.LoadScene ("Level1");
 	}
 
 	public void BeginLevel2(){
@@ -49,7 +49,7 @@ public class SelectionMenuScript : MonoBehaviour {
 	IEnumerator DelayBeginLevel4(){
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource>().Play();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
-		//SceneManager.LoadScene ("");
+		SceneManager.LoadScene ("Level4");
 	}
 
 

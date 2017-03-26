@@ -1,9 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour {
 
-	SpriteRenderer healthBar;
+	private float currentHealth;
+	private float maxHealth;
+	private float finalHealth;
+
+
+
+
+
+	[SerializeField]
+	private Image healthFill;
+
+
+
+
+
+	void FixedUpdate(){
+
+		currentHealth = (float)GameObject.Find ("PlayerGameObject").GetComponent<Player> ().MyDurability;
+
+		maxHealth = (float)GameObject.Find ("PlayerGameObject").GetComponent<Player> ().MyMaxDurability;
+
+		finalHealth = currentHealth / maxHealth;
+
+
+
+		healthFill.fillAmount = finalHealth;
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+	/*SpriteRenderer healthBar;
 	public Sprite health100;
 	public Sprite health95;
 	public Sprite health90;
@@ -113,6 +153,6 @@ public class HealthBarScript : MonoBehaviour {
 
 	}
 
-
+*/
 
 }
