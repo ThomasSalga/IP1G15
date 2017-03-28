@@ -110,8 +110,17 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
 
     public override void Death()
     {
-        FreePos();
+		StartCoroutine(DelayBuildingDeath());
+		FreePos();
     }
+
+
+	IEnumerator DelayBuildingDeath(){
+
+		GameObject.Find ("BuildingDestroySoundEffect").GetComponent<AudioSource>().Play();
+		yield return new WaitForSeconds (GameObject.Find ("BuildingDestroySoundEffect").GetComponent<AudioSource> ().clip.length);
+
+	}
 
     protected virtual Vector3 Drag()
     {

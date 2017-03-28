@@ -12,8 +12,10 @@ public class Player : MonoBehaviour, IFixable<int> {
 	private int m_life;
     [SerializeField]
     private int m_resource;
-	[SerializeField]
-	private GameObject loseCanvas;
+
+	public GameObject mainCanvas;
+	public GameObject effectCamera;
+	public GameObject loseCanvas;
 
     public int MyMaxDurability
     {
@@ -50,7 +52,12 @@ public class Player : MonoBehaviour, IFixable<int> {
 
 	public void LoseGame(){
 
-		loseCanvas = GameObject.Find ("LoseCanvas");
+		mainCanvas.SetActive (false);
+		effectCamera.SetActive(true);
+
+		GameObject.Find ("MusicPlaying").GetComponent<AudioSource> ().Stop ();
+
+		GameObject.Find ("EndMusic").GetComponent<AudioSource> ().Play ();
 
 		loseCanvas.SetActive (true);
 
@@ -78,7 +85,7 @@ public class Player : MonoBehaviour, IFixable<int> {
     // Use this for initialization
     void Start ()
     {
-
+		effectCamera.SetActive(true);
 		Time.timeScale = 1;
 		GameObject.Find ("LoseCanvas").SetActive (false);
 		GameObject.Find ("WinCanvas").SetActive (false);

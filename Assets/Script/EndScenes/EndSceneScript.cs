@@ -6,20 +6,12 @@ using UnityEngine.UI;
 public class EndSceneScript : MonoBehaviour {
 
 
-	//public double previousLevel;
+
 
 	// Use this for initialization
 	void Start () {
 
-		/*GameObject gameData = GameObject.Find("GameDataObject");
-		if (gameData == null) {
 
-			gameData = new GameObject ("GameDataObject");
-			gameData.AddComponent<GameDataScript> ();
-		} else {
-			GameDataScript gameDataScript = gameData.GetComponent<GameDataScript>();
-			//nameInputField.text = gameDataScript.playerName;
-		}*/
 
 	}
 
@@ -31,6 +23,8 @@ public class EndSceneScript : MonoBehaviour {
 
 	public void Restart(){
 
+		GameObject.Find ("EnemyBase").SetActive(false);
+		Time.timeScale = 1;
 		StartCoroutine (DelayRestart());
 
 	}
@@ -40,12 +34,14 @@ public class EndSceneScript : MonoBehaviour {
 	
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource>().Play();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
-		SceneManager.LoadScene ("MainLevel");
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 
 
 	public void ReturnToMainMenu(){
 
+		GameObject.Find ("EnemyBase").SetActive(false);
+		Time.timeScale = 1;
 		StartCoroutine (DelayReturnToMainMenu());
 
 
@@ -53,8 +49,11 @@ public class EndSceneScript : MonoBehaviour {
 
 
 
+
+
 	IEnumerator DelayReturnToMainMenu(){
 
+	
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().Play ();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		SceneManager.LoadScene ("MainMenuScene");

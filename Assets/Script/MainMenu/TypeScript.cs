@@ -46,7 +46,7 @@ public class TypeScript : MonoBehaviour
 		{
 			txt.text += c;
 			typeSound.Play();
-			yield return new WaitForSeconds(0.075f);
+			yield return new WaitForSeconds(0.02f);
 		}
 	}
 

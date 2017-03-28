@@ -14,6 +14,7 @@ public class OptionsMenuScript : MonoBehaviour {
 	public GameObject musicUnmute;
 	public GameObject fxMute;
 	public GameObject fxUnmute;
+	public GameObject musicIcons;
 
 
 	// Use this for initialization
@@ -79,6 +80,7 @@ public class OptionsMenuScript : MonoBehaviour {
 
 	public void MusicMute(){
 
+		musicIcons.SetActive (false);
 		masterMixer.SetFloat ("MusicVolume", -80);
 		musicMute.SetActive (false);
 		musicUnmute.SetActive (true);
@@ -87,6 +89,7 @@ public class OptionsMenuScript : MonoBehaviour {
 
 	public void MusicUnmute(){
 
+		musicIcons.SetActive (true);
 		masterMixer.SetFloat ("MusicVolume", 0);
 		musicMute.SetActive (true);
 		musicUnmute.SetActive (false);
