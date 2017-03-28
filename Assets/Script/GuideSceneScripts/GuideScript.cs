@@ -4,10 +4,245 @@ using UnityEngine.SceneManagement;
 
 public class GuideScript : MonoBehaviour {
 
+	GameObject building1Info;
+	GameObject building2Info;
+	GameObject building3Info;
+	GameObject building4Info;
+	GameObject building5Info;
+	GameObject enemy1Info;
+	GameObject enemy2Info;
+	GameObject enemy7Info;
+	GameObject enemy8Info;
+	GameObject enemy1On;
+	GameObject enemy2On;
+	GameObject enemy7On;
+	GameObject enemy8On;
+
 	// Use this for initialization
 	void Start () {
+		building1Info =	GameObject.Find ("HamishWoodInfo");
+		building1Info.SetActive (false);
+
+		building2Info =	GameObject.Find ("GeorgeMooreInfo");
+		building2Info.SetActive (false);
+
+		building3Info =	GameObject.Find ("GovanMbekiInfo");
+		building3Info.SetActive (false);
+
+		building4Info =	GameObject.Find ("CaledonianCourtInfo");
+		building4Info.SetActive (false);
+
+		building5Info =	GameObject.Find ("CharlesOakleyInfo");
+		building5Info.SetActive (false);
+
+		enemy1Info = GameObject.Find ("NormalStoneInfo");
+		enemy1Info.SetActive (false);
+
+		enemy2Info = GameObject.Find ("StrongerStoneInfo");
+		enemy2Info.SetActive (false);
+
+		enemy7Info = GameObject.Find ("NormalIceInfo");
+		enemy7Info.SetActive (false);
+
+		enemy8Info = GameObject.Find ("StrongerIceInfo");
+		enemy8Info.SetActive (false);
+
+		enemy1On = GameObject.Find ("Enemy1On");
+		enemy1On.SetActive (true);
+
+		enemy2On = GameObject.Find ("Enemy2On");
+		enemy2On.SetActive (true);
+
+		enemy7On = GameObject.Find ("Enemy7On");
+		enemy7On.SetActive (true);
+
+		enemy8On = GameObject.Find ("Enemy8On");
+		enemy8On.SetActive (true);
+
+	}
+
+	public void OpenBuilding1(){
+		building1Info.SetActive (true);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+	}
+	public void CloseBuilding1(){
+	
+		building1Info.SetActive (false);
+	}
+
+	public void OpenBuilding2(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (true);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+	}
+	public void CloseBuilding2(){
+		building2Info.SetActive (false);
+	}
+
+	public void OpenBuilding3(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (true);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+	}
+	public void CloseBuilding3(){
+		building3Info.SetActive (false);
+	}
+
+	public void OpenBuilding4(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (true);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+	}
+	public void CloseBuilding4(){
+		building4Info.SetActive (false);
+	}
+
+	public void OpenBuilding5(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (true);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+	}
+	public void CloseBuilding5(){
+		building5Info.SetActive (false);
+	}
+
+	public void OpenEnemy1(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (true);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (false);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
 	
 	}
+	public void CloseEnemy1(){
+		enemy1Info.SetActive (false);
+		enemy1On.SetActive (true);
+	}
+
+	public void OpenEnemy2(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (true);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (false);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (true);
+
+	}
+	public void CloseEnemy2(){
+		enemy2Info.SetActive (false);
+		enemy2On.SetActive (true);
+	}
+
+	public void OpenEnemy7(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (true);
+		enemy8Info.SetActive (false);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (false);
+		enemy8On.SetActive (true);
+	
+	}
+	public void CloseEnemy7(){
+		enemy7Info.SetActive (false);
+		enemy7On.SetActive (true);
+	}
+
+	public void OpenEnemy8(){
+		building1Info.SetActive (false);
+		building2Info.SetActive (false);
+		building3Info.SetActive (false);
+		building4Info.SetActive (false);
+		building5Info.SetActive (false);
+		enemy1Info.SetActive (false);
+		enemy2Info.SetActive (false);
+		enemy7Info.SetActive (false);
+		enemy8Info.SetActive (true);
+		enemy1On.SetActive (true);
+		enemy2On.SetActive (true);
+		enemy7On.SetActive (true);
+		enemy8On.SetActive (false);
+	}
+	public void CloseEnemy8(){
+		enemy8Info.SetActive (false);
+		enemy8On.SetActive (true);
+	}
+
+
+
+
 
 	public void ReturnToMainMenu(){
 
