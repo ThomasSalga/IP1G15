@@ -17,6 +17,9 @@ public class Player : MonoBehaviour, IFixable<int> {
 	public GameObject effectCamera;
 	public GameObject loseCanvas;
 
+
+    public bool holdingBuilding;
+
     public int MyMaxDurability
     {
         get
@@ -50,21 +53,6 @@ public class Player : MonoBehaviour, IFixable<int> {
         }
     }
 
-	public void LoseGame(){
-
-		mainCanvas.SetActive (false);
-		effectCamera.SetActive(true);
-
-		GameObject.Find ("MusicPlaying").GetComponent<AudioSource> ().Stop ();
-
-		GameObject.Find ("EndMusic").GetComponent<AudioSource> ().Play ();
-
-		loseCanvas.SetActive (true);
-
-		Time.timeScale = 0;
-
-	}
-
 
 
     public int MyResource
@@ -82,9 +70,25 @@ public class Player : MonoBehaviour, IFixable<int> {
         }
     }
 
+	public void LoseGame(){
+
+		mainCanvas.SetActive (false);
+		effectCamera.SetActive(true);
+
+		GameObject.Find ("MusicPlaying").GetComponent<AudioSource> ().Stop ();
+
+		GameObject.Find ("EndMusic").GetComponent<AudioSource> ().Play ();
+
+		loseCanvas.SetActive (true);
+
+		Time.timeScale = 0;
+
+	}
+
     // Use this for initialization
     void Start ()
     {
+        holdingBuilding = false;
 		effectCamera.SetActive(true);
 		Time.timeScale = 1;
 		GameObject.Find ("LoseCanvas").SetActive (false);

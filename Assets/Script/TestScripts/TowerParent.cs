@@ -124,6 +124,7 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
 
     protected virtual Vector3 Drag()
     {
+        if(FindObjectOfType<Player>().holdingBuilding)
         if (Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero))
         {
             m_hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
@@ -138,24 +139,26 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
                 if (SecurePos(m_originX, m_originY, m_buildingSpace))
                 {
                     PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
-                    if (Input.GetButtonDown("Fire1") && FindObjectOfType<Player>().MyResource - MyPrice >= 0)
-                    {
-                        BlockSpace(m_originX, m_originY, m_buildingSpace);
-                        m_state = DefenceState.Placed;
-                        StateTransition();
-                        FindObjectOfType<Player>().MyResource -= MyPrice;
-                        PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
-                        m_pos = m_hit.transform.position;
-                        m_pos.z = 0;
-                        m_pos.x += m_adjustPosX;
-                        m_pos.y += m_adjustPosY;
-                        gameObject.GetComponent<Collider2D>().enabled = true;
-                        return m_pos;
-                    }
-                    else if (FindObjectOfType<Player>().MyResource - MyPrice < 0)
-                    {
-                        Destroy(gameObject);
-                    }
+
+                        if (Input.GetButtonDown("Fire1") && FindObjectOfType<Player>().MyResource - MyPrice >= 0)
+                        {
+                            BlockSpace(m_originX, m_originY, m_buildingSpace);
+                            m_state = DefenceState.Placed;
+                            Debug.Log("state transition here");
+                            StateTransition();
+                            FindObjectOfType<Player>().MyResource -= MyPrice;
+                            PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
+                            m_pos = m_hit.transform.position;
+                            m_pos.z = 0;
+                            m_pos.x += m_adjustPosX;
+                            m_pos.y += m_adjustPosY;
+                            gameObject.GetComponent<Collider2D>().enabled = true;
+                            return m_pos;
+                        }
+                        else if (FindObjectOfType<Player>().MyResource - MyPrice < 0)
+                        {
+                            Destroy(gameObject);
+                        }
                 }
                 else
                 {
@@ -218,7 +221,8 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
 
     public virtual void StateTransition()
     {
-        //nothing normally
+        Debug.Log("state transition holding false");
+        FindObjectOfType<Player>().holdingBuilding = false;
     }
     
 }
