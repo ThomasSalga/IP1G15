@@ -17,6 +17,11 @@ public class GuideScript : MonoBehaviour {
 	GameObject enemy2On;
 	GameObject enemy7On;
 	GameObject enemy8On;
+	GameObject building1On;
+	GameObject building2On;
+	GameObject building3On;
+	GameObject building4On;
+	GameObject building5On;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +64,21 @@ public class GuideScript : MonoBehaviour {
 		enemy8On = GameObject.Find ("Enemy8On");
 		enemy8On.SetActive (true);
 
+		building1On = GameObject.Find ("Building1On");
+		building1On.SetActive (true);
+
+		building2On = GameObject.Find ("Building2On");
+		building2On.SetActive (true);
+
+		building3On = GameObject.Find ("Building3On");
+		building3On.SetActive (true);
+
+		building4On = GameObject.Find ("Building4On");
+		building4On.SetActive (true);
+
+		building5On = GameObject.Find ("Building5On");
+		building5On.SetActive (true);
+
 	}
 
 	public void OpenBuilding1(){
@@ -71,13 +91,18 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (false);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
 		enemy8On.SetActive (true);
 	}
 	public void CloseBuilding1(){
-	
+		building1On.SetActive (true);
 		building1Info.SetActive (false);
 	}
 
@@ -91,12 +116,18 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (false);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
 		enemy8On.SetActive (true);
 	}
 	public void CloseBuilding2(){
+		building2On.SetActive (true);
 		building2Info.SetActive (false);
 	}
 
@@ -110,12 +141,18 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (false);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
 		enemy8On.SetActive (true);
 	}
 	public void CloseBuilding3(){
+		building3On.SetActive (true);
 		building3Info.SetActive (false);
 	}
 
@@ -129,12 +166,18 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (false);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
 		enemy8On.SetActive (true);
 	}
 	public void CloseBuilding4(){
+		building4On.SetActive (true);
 		building4Info.SetActive (false);
 	}
 
@@ -148,12 +191,18 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (false);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
 		enemy8On.SetActive (true);
 	}
 	public void CloseBuilding5(){
+		building5On.SetActive (true);
 		building5Info.SetActive (false);
 	}
 
@@ -167,6 +216,11 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (false);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -188,6 +242,11 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (true);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (false);
 		enemy7On.SetActive (true);
@@ -209,6 +268,11 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (true);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (false);
@@ -230,6 +294,11 @@ public class GuideScript : MonoBehaviour {
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (true);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);

@@ -29,6 +29,11 @@ public class Pause : MonoBehaviour
 	public GameObject enemy2On;
 	public GameObject enemy7On;
 	public GameObject enemy8On;
+	public GameObject building1On;
+	public GameObject building2On;
+	public GameObject building3On;
+	public GameObject building4On;
+	public GameObject building5On;
 
 	// Use this for initialization
 
@@ -43,6 +48,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (false);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -51,6 +61,7 @@ public class Pause : MonoBehaviour
 	public void CloseBuilding1(){
 
 		building1Info.SetActive (false);
+		building1On.SetActive (true);
 	}
 
 	public void OpenBuilding2(){
@@ -63,6 +74,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (false);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -70,6 +86,7 @@ public class Pause : MonoBehaviour
 	}
 	public void CloseBuilding2(){
 		building2Info.SetActive (false);
+		building2On.SetActive (true);
 	}
 
 	public void OpenBuilding3(){
@@ -82,6 +99,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (false);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -89,6 +111,7 @@ public class Pause : MonoBehaviour
 	}
 	public void CloseBuilding3(){
 		building3Info.SetActive (false);
+		building3On.SetActive (true);
 	}
 
 	public void OpenBuilding4(){
@@ -101,6 +124,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (false);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -108,6 +136,7 @@ public class Pause : MonoBehaviour
 	}
 	public void CloseBuilding4(){
 		building4Info.SetActive (false);
+		building4On.SetActive (true);
 	}
 
 	public void OpenBuilding5(){
@@ -120,6 +149,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (false);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -127,6 +161,7 @@ public class Pause : MonoBehaviour
 	}
 	public void CloseBuilding5(){
 		building5Info.SetActive (false);
+		building5On.SetActive (true);
 	}
 
 	public void OpenEnemy1(){
@@ -139,6 +174,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (false);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);
@@ -160,6 +200,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (true);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (false);
 		enemy7On.SetActive (true);
@@ -181,6 +226,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (true);
 		enemy8Info.SetActive (false);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (false);
@@ -202,6 +252,11 @@ public class Pause : MonoBehaviour
 		enemy2Info.SetActive (false);
 		enemy7Info.SetActive (false);
 		enemy8Info.SetActive (true);
+		building1On.SetActive (true);
+		building2On.SetActive (true);
+		building3On.SetActive (true);
+		building4On.SetActive (true);
+		building5On.SetActive (true);
 		enemy1On.SetActive (true);
 		enemy2On.SetActive (true);
 		enemy7On.SetActive (true);

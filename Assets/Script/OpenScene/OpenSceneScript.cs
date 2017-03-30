@@ -20,7 +20,7 @@ public class OpenSceneScript : MonoBehaviour {
 
 	IEnumerator DelayLoad(){
 
-		yield return new WaitForSecondsRealtime (5f);
+		yield return new WaitForSecondsRealtime (4f);
 
 		SceneManager.LoadScene ("MainMenuScene");
 	}
