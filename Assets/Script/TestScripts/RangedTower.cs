@@ -100,7 +100,7 @@ public class RangedTower : TowerParent, ISpawnGO, IRecurringAction {
 
     public override void StateTransition()
     {
-        Debug.Log("in");
+        base.StateTransition();
         StartCoroutine(gameObject.GetComponent<MoneyResource>().RecurAction());
     }
 }
