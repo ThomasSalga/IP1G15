@@ -129,6 +129,17 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     }
     #endregion
 
+    public Color m_color;
+
+    IEnumerator HitFeedback()
+    {
+        Debug.Log("Color");
+        Color c = gameObject.GetComponent<SpriteRenderer>().color;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<SpriteRenderer>().color = c;
+    }
+
     // Initialization
     protected virtual void Start()
     {
@@ -175,6 +186,8 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
     public void TakeDamage(int amount)
     {
         // Call effects here
+        StartCoroutine(HitFeedback());
+
         MyDurability -= amount;
 
         if (m_life <= 0)
