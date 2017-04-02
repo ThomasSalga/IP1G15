@@ -26,9 +26,13 @@ public class HealingTower : TowerParent, IRecurringAction {
 
     public IEnumerator RecurAction()
     {
-        yield return new WaitForSeconds(MyActionTimeGap);
-        Heal(m_healingPower);
-    }
+
+
+			yield return new WaitForSeconds (MyActionTimeGap);
+			Heal (m_healingPower);
+
+		
+		}
 
     // Use this for initialization
     protected override void Start()
@@ -60,7 +64,12 @@ public class HealingTower : TowerParent, IRecurringAction {
 
     void Heal(int amount)
     {
-        FindObjectOfType<Player>().MyDurability += amount;
-        RecurAction();
+
+
+
+			FindObjectOfType<Player> ().MyDurability += amount;
+			RecurAction ();
+
+		
     }
 }

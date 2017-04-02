@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EndSceneScript : MonoBehaviour {
 
 
-
+	public GameObject enemyBase;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +35,7 @@ public class EndSceneScript : MonoBehaviour {
 		GameObject.Find ("ButtonClickObject").GetComponent<AudioSource>().Play();
 		yield return new WaitForSeconds (GameObject.Find ("ButtonClickObject").GetComponent<AudioSource> ().clip.length);
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		Debug.Log ("restartclicked");
 	}
 
 

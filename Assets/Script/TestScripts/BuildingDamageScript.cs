@@ -15,6 +15,7 @@ public class BuildingDamageScript : MonoBehaviour {
 	void Start () {
 	
 		actualHealth= (float)gameObject.GetComponent<TowerParent> ().MyDurability/5;
+		damageVisual = gameObject.GetComponent<SpriteRenderer>();
 
 	}
 	
@@ -22,23 +23,25 @@ public class BuildingDamageScript : MonoBehaviour {
 	void FixedUpdate () {
 	
 
-		damageVisual = gameObject.GetComponent<SpriteRenderer>();
+
 
 
 
 		float finalHealth = (float)gameObject.GetComponent<TowerParent> ().MyDurability; //75
 	
+	
 
-		if (finalHealth == actualHealth * 5) {
+
+		if (finalHealth <= actualHealth * 5) {
 			damageVisual.sprite = stage1;
 		}
-		if (finalHealth == actualHealth * 4) {
+		if (finalHealth <= actualHealth * 4) {
 			damageVisual.sprite = stage2;
 		}
-		if (finalHealth == actualHealth * 3) {
+		if (finalHealth <= actualHealth * 3) {
 			damageVisual.sprite = stage3;
 		}
-		if (finalHealth == actualHealth * 2) {
+		if (finalHealth <= actualHealth * 2) {
 			damageVisual.sprite = stage4;
 		}
 

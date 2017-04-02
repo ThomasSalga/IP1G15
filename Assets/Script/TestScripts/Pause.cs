@@ -14,6 +14,8 @@ public class Pause : MonoBehaviour
 	public float appearTime;
 	public float disappearTime;
 	public GameObject guide;
+	public GameObject tutorialCanvas;
+	public float tutorialLength;
 
 
 	public GameObject building1Info;
@@ -280,6 +282,9 @@ public class Pause : MonoBehaviour
 
 
 	void Start () {
+
+			tutorialCanvas.SetActive (true);
+
 			//building1Info =	GameObject.Find ("HamishWoodInfo");
 			building1Info.SetActive (false);
 
@@ -330,9 +335,15 @@ public class Pause : MonoBehaviour
 		Time.timeScale = 1;
 		StartCoroutine(WarningAppear());
 		StartCoroutine (WarningDisappear());
+		StartCoroutine (TutorialCanvasDisappear ());
 	}
 
+	IEnumerator TutorialCanvasDisappear()
+	{
+		yield return new WaitForSeconds (tutorialLength);
+		tutorialCanvas.SetActive (false);
 
+	}
 
 	IEnumerator WarningAppear()
 	{

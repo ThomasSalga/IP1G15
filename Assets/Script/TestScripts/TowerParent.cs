@@ -158,6 +158,7 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
                         else if (FindObjectOfType<Player>().MyResource - MyPrice < 0)
                         {
                             Destroy(gameObject);
+						FindObjectOfType<Player>().holdingBuilding = false;
                         }
                 }
                 else

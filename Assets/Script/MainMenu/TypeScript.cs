@@ -12,6 +12,7 @@ public class TypeScript : MonoBehaviour
 	public bool PlayOnAwake = true;
 	public float Delay;
 	public AudioSource typeSound;
+	public float speed;
 
 	void Start(){
 
@@ -46,7 +47,7 @@ public class TypeScript : MonoBehaviour
 		{
 			txt.text += c;
 			typeSound.Play();
-			yield return new WaitForSeconds(0.0175f);
+			yield return new WaitForSeconds(speed / 100);
 		}
 	}
 
