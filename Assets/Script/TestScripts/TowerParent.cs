@@ -148,6 +148,7 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
                             StateTransition();
                             FindObjectOfType<Player>().MyResource -= MyPrice;
                             PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.white);
+                            gameObject.GetComponent<AudioSource>().Play(); //audio feedback
                             m_pos = m_hit.transform.position;
                             m_pos.z = 0;
                             m_pos.x += m_adjustPosX;
