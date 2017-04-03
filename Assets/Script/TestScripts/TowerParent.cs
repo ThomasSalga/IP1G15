@@ -124,21 +124,21 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
 
     protected virtual Vector3 Drag()
     {
-        if(FindObjectOfType<Player>().holdingBuilding)
-        if (Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero))
-        {
-            m_hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
-
-            if (m_hit.gameObject.tag == "Snap")
+        if (FindObjectOfType<Player>().holdingBuilding)
+            if (Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero))
             {
-                if (m_originX != m_hit.GetComponent<Cell>().MyColumn || m_originY != m_hit.GetComponent<Cell>().MyRow)
+                m_hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero).collider.gameObject;
+
+                if (m_hit.gameObject.tag == "Snap")
                 {
-                    m_originY = m_hit.GetComponent<Cell>().MyRow;
-                    m_originX = m_hit.GetComponent<Cell>().MyColumn;
-                }
-                if (SecurePos(m_originX, m_originY, m_buildingSpace))
-                {
-                    PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
+                    if (m_originX != m_hit.GetComponent<Cell>().MyColumn || m_originY != m_hit.GetComponent<Cell>().MyRow)
+                    {
+                        m_originY = m_hit.GetComponent<Cell>().MyRow;
+                        m_originX = m_hit.GetComponent<Cell>().MyColumn;
+                    }
+                    if (SecurePos(m_originX, m_originY, m_buildingSpace))
+                    {
+                        PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.green);
 
                         if (Input.GetButtonDown("Fire1") && FindObjectOfType<Player>().MyResource - MyPrice >= 0)
                         {
@@ -157,24 +157,25 @@ public abstract class TowerParent : LivingObject, IDamageable<int>, IBuyable<int
                         }
                         else if (FindObjectOfType<Player>().MyResource - MyPrice < 0)
                         {
+                            FindObjectOfType<Player>().holdingBuilding = false;
                             Destroy(gameObject);
-						FindObjectOfType<Player>().holdingBuilding = false;
                         }
-                }
-                else
-                {
-                    PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        Destroy(gameObject);
                     }
+                    else
+                    {
+                        PlacementFeedback(gameObject.GetComponent<SpriteRenderer>(), Color.red);
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            FindObjectOfType<Player>().holdingBuilding = false;
+                            Destroy(gameObject);
+                        }
+                    }
+                    m_pos = m_hit.transform.position;
+                    m_pos.z = 0;
+                    m_pos.x += m_adjustPosX;
+                    m_pos.y += m_adjustPosY;
                 }
-                m_pos = m_hit.transform.position;
-                m_pos.z = 0;
-                m_pos.x += m_adjustPosX;
-                m_pos.y += m_adjustPosY;
             }
-        }
         return m_pos;
     }
 

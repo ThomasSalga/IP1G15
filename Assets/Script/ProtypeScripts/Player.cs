@@ -45,10 +45,11 @@ public class Player : MonoBehaviour, IFixable<int> {
             m_life = value;
             if (m_life <= 0)
             {
-
-				LoseGame ();
-
-				//SceneManager.LoadScene("DeadScene");
+                LoseGame();
+            }
+            else if (m_life > MyMaxDurability)
+            {
+                m_life = MyMaxDurability;
             }
         }
     }
