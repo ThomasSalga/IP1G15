@@ -93,10 +93,13 @@ public class Projectile : MonoBehaviour, IMovable, IAttack<int> {
         m_rb.velocity = new Vector2(m_speed * m_direction, 0);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+	protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        MyTarget = other.gameObject;                    
-    }
+		
+
+			MyTarget = other.gameObject;                    
+		
+		}
 
     public void Move()
     {

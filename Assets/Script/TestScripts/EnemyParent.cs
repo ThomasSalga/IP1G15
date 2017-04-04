@@ -133,7 +133,8 @@ public abstract class EnemyParent : LivingObject, IDamageable<int>, IMovable, IA
 
     IEnumerator HitFeedback()
     {
-        Color c = gameObject.GetComponent<SpriteRenderer>().color;
+		GameObject.Find("HitSound").GetComponent<AudioSource> ().Play ();
+		Color c = gameObject.GetComponent<SpriteRenderer> ().color;
         gameObject.GetComponent<SpriteRenderer>().color = m_color;
         yield return new WaitForSeconds(0.2f);
         gameObject.GetComponent<SpriteRenderer>().color = c;

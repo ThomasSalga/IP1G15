@@ -31,10 +31,17 @@ public class EnemyBase : MonoBehaviour {
 
 
 		} else {
-			//GetComponent<AudioSource>().Play ();
+			StartCoroutine (DelayArrivalSound ());
+
 		}
 	}
 
+
+	IEnumerator DelayArrivalSound(){
+		GetComponent<AudioSource> ().Play();
+		yield return new WaitForSeconds (GetComponent<AudioSource>().clip.length);
+		DestroyImmediate(GetComponent<AudioSource>());
+	}
 
 
 	public void WinGame(){
